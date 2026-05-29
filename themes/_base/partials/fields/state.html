@@ -1,0 +1,9 @@
+{{ define "fields/state" }}
+<div class="field-group"
+     data-field="state"
+     data-validate="required">
+  <input id="state" type="text" autocomplete="address-level1" />
+  <label for="state">{{ t . "field.state.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

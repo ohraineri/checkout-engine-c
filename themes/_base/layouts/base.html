@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="{{ .Store.Locale }}">
+<head>
+  {{ template "head" . }}
+</head>
+<body>
+  {{ block "content" . }}{{ end }}
+  {{ template "scripts" . }}
+</body>
+</html>

@@ -1,0 +1,9 @@
+{{ define "fields/card-name" }}
+<div class="field-group"
+     data-field="card-name"
+     data-validate="required">
+  <input id="card-name" type="text" autocomplete="cc-name" />
+  <label for="card-name">{{ t . "field.card-name.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

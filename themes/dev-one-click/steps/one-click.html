@@ -1,0 +1,262 @@
+{{ define "step_content" }}
+<form class="oc-form-col" method="POST" action="/{{ .Store.Slug }}/checkout/confirm"
+  novalidate aria-label="Formulário de checkout"
+  itemscope itemtype="https://schema.org/Order">
+
+  <section class="oc-card" aria-labelledby="personal-heading"
+    itemprop="customer" itemscope itemtype="https://schema.org/Person">
+    <div class="oc-card-header">
+      <span class="oc-step-num" aria-hidden="true">1</span>
+      <h2 id="personal-heading" class="oc-card-title">Dados pessoais</h2>
+    </div>
+    <div class="oc-card-body">
+      <div class="oc-row">
+        <div class="oc-field">
+          <label class="oc-label" for="name">Nome completo</label>
+          <input class="oc-input" type="text" id="name" name="name"
+            value="{{ .Session.CustomerName }}"
+            placeholder="Seu nome completo"
+            autocomplete="name"
+            itemprop="name"
+            required>
+        </div>
+      </div>
+      <div class="oc-row">
+        <div class="oc-field">
+          <label class="oc-label" for="email">E-mail</label>
+          <input class="oc-input" type="email" id="email" name="email"
+            value="{{ .Session.Email }}"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            itemprop="email"
+            required>
+        </div>
+        <div class="oc-field oc-field--md">
+          <label class="oc-label" for="phone">Telefone</label>
+          <input class="oc-input" type="tel" id="phone" name="phone"
+            placeholder="(11) 99999-9999"
+            autocomplete="tel"
+            inputmode="numeric"
+            itemprop="telephone"
+            maxlength="15">
+        </div>
+      </div>
+      <div class="oc-row">
+        <div class="oc-field oc-field--md">
+          <label class="oc-label" for="cpf">CPF</label>
+          <input class="oc-input" type="text" id="cpf" name="cpf"
+            placeholder="000.000.000-00"
+            autocomplete="off"
+            inputmode="numeric"
+            maxlength="14">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oc-card" aria-labelledby="delivery-heading"
+    itemprop="orderDelivery" itemscope itemtype="https://schema.org/ParcelDelivery">
+    <div class="oc-card-header">
+      <span class="oc-step-num" aria-hidden="true">2</span>
+      <h2 id="delivery-heading" class="oc-card-title">Entrega</h2>
+    </div>
+    <div class="oc-card-body">
+      <div class="oc-row">
+        <div class="oc-field oc-field--md">
+          <label class="oc-label" for="cep">CEP</label>
+          <input class="oc-input" type="text" id="cep" name="cep"
+            placeholder="00000-000"
+            autocomplete="postal-code"
+            inputmode="numeric"
+            maxlength="9" required>
+        </div>
+      </div>
+      <div class="oc-row">
+        <div class="oc-field">
+          <label class="oc-label" for="street">Rua</label>
+          <input class="oc-input" type="text" id="street" name="street"
+            placeholder="Nome da rua"
+            autocomplete="address-line1"
+            required>
+        </div>
+        <div class="oc-field oc-field--sm">
+          <label class="oc-label" for="number">Número</label>
+          <input class="oc-input" type="text" id="number" name="number"
+            placeholder="000"
+            autocomplete="off"
+            required>
+        </div>
+      </div>
+      <div class="oc-row">
+        <div class="oc-field">
+          <label class="oc-label" for="complement">Complemento</label>
+          <input class="oc-input" type="text" id="complement" name="complement"
+            placeholder="Apto, bloco, casa..."
+            autocomplete="address-line2">
+        </div>
+        <div class="oc-field">
+          <label class="oc-label" for="neighborhood">Bairro</label>
+          <input class="oc-input" type="text" id="neighborhood" name="neighborhood"
+            placeholder="Bairro"
+            autocomplete="off"
+            required>
+        </div>
+      </div>
+      <div class="oc-row">
+        <div class="oc-field">
+          <label class="oc-label" for="city">Cidade</label>
+          <input class="oc-input" type="text" id="city" name="city"
+            placeholder="Cidade"
+            autocomplete="address-level2"
+            required>
+        </div>
+        <div class="oc-field oc-field--sm">
+          <label class="oc-label" for="state">Estado</label>
+          <input class="oc-input" type="text" id="state" name="state"
+            placeholder="UF"
+            autocomplete="address-level1"
+            maxlength="2" required>
+        </div>
+      </div>
+      <div class="oc-row">
+        <div class="oc-field">
+          <fieldset style="border:none;padding:0">
+            <legend class="oc-label" style="margin-bottom:11px;display:block">Método de entrega</legend>
+            <div class="oc-shipping-list">
+              <label class="oc-shipping-opt">
+                <input type="radio" name="shipping_method" value="standard" checked>
+                <div class="oc-shipping-info">
+                  <div class="oc-shipping-name">Entrega padrão</div>
+                  <div class="oc-shipping-eta">5 a 8 dias úteis</div>
+                </div>
+                <span class="oc-shipping-price">{{ .Cart.Shipping.Display }}</span>
+              </label>
+              <label class="oc-shipping-opt">
+                <input type="radio" name="shipping_method" value="express">
+                <div class="oc-shipping-info">
+                  <div class="oc-shipping-name">Entrega expressa</div>
+                  <div class="oc-shipping-eta">1 a 2 dias úteis</div>
+                </div>
+                <span class="oc-shipping-price">R$&nbsp;29,90</span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oc-card" aria-labelledby="payment-heading">
+    <div class="oc-card-header">
+      <span class="oc-step-num" aria-hidden="true">3</span>
+      <h2 id="payment-heading" class="oc-card-title">Pagamento</h2>
+    </div>
+    <div class="oc-card-body">
+      <div class="oc-pay-tabs" role="tablist" aria-label="Forma de pagamento">
+        <button type="button" class="oc-pay-tab oc-pay-tab--active"
+          role="tab" aria-selected="true" aria-controls="panel-pix" data-tab="pix">
+          ⚡ PIX
+        </button>
+        <button type="button" class="oc-pay-tab"
+          role="tab" aria-selected="false" aria-controls="panel-card" data-tab="card">
+          💳 Cartão
+        </button>
+        <button type="button" class="oc-pay-tab"
+          role="tab" aria-selected="false" aria-controls="panel-boleto" data-tab="boleto">
+          📄 Boleto
+        </button>
+      </div>
+
+      <div class="oc-tab-panel" id="panel-pix" role="tabpanel" aria-labelledby="tab-pix">
+        <div class="oc-pix-wrap">
+          <div class="oc-pix-qr" aria-label="QR Code PIX gerado após confirmação">QR Code</div>
+          <p class="oc-pix-desc">Escaneie com o app do seu banco para pagar</p>
+          <div class="oc-pix-amount">{{ .Cart.Total.Display }}</div>
+          <p class="oc-pix-sub">Aprovação em até 2 minutos</p>
+          <button type="button" class="oc-pix-copy">Copiar código PIX</button>
+        </div>
+      </div>
+
+      <div class="oc-tab-panel oc-tab-panel--hidden" id="panel-card" role="tabpanel" aria-labelledby="tab-card">
+        <div class="oc-brands" aria-label="Bandeiras aceitas">
+          <span class="oc-brand">Visa</span>
+          <span class="oc-brand">Master</span>
+          <span class="oc-brand">Amex</span>
+          <span class="oc-brand">Elo</span>
+          <span class="oc-brand">Hiper</span>
+        </div>
+        <div class="oc-row">
+          <div class="oc-field">
+            <label class="oc-label" for="card_number">Número do cartão</label>
+            <input class="oc-input" type="text" id="card_number" name="card_number"
+              placeholder="0000 0000 0000 0000"
+              autocomplete="cc-number"
+              inputmode="numeric"
+              maxlength="19">
+          </div>
+        </div>
+        <div class="oc-row">
+          <div class="oc-field">
+            <label class="oc-label" for="card_name">Nome no cartão</label>
+            <input class="oc-input" type="text" id="card_name" name="card_name"
+              placeholder="NOME COMO ESTÁ NO CARTÃO"
+              autocomplete="cc-name">
+          </div>
+        </div>
+        <div class="oc-row">
+          <div class="oc-field oc-field--sm">
+            <label class="oc-label" for="card_expiry">Validade</label>
+            <input class="oc-input" type="text" id="card_expiry" name="card_expiry"
+              placeholder="MM/AA"
+              autocomplete="cc-exp"
+              inputmode="numeric"
+              maxlength="5">
+          </div>
+          <div class="oc-field oc-field--sm">
+            <label class="oc-label" for="card_cvv">CVV</label>
+            <input class="oc-input" type="text" id="card_cvv" name="card_cvv"
+              placeholder="000"
+              autocomplete="cc-csc"
+              inputmode="numeric"
+              maxlength="4">
+          </div>
+        </div>
+        <div class="oc-row">
+          <div class="oc-field">
+            <label class="oc-label" for="installments">Parcelamento</label>
+            <select class="oc-select" id="installments" name="installments">
+              <option value="1">1x de {{ .Cart.Total.Display }} sem juros</option>
+              <option value="2">2x sem juros</option>
+              <option value="3">3x sem juros</option>
+              <option value="6">6x sem juros</option>
+              <option value="12">12x sem juros</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="oc-tab-panel oc-tab-panel--hidden" id="panel-boleto" role="tabpanel" aria-labelledby="tab-boleto">
+        <div class="oc-boleto-wrap">
+          <span class="oc-boleto-icon" aria-hidden="true">📄</span>
+          <p class="oc-boleto-title">Boleto bancário</p>
+          <p class="oc-boleto-desc">
+            O boleto será gerado após a confirmação do pedido.<br>
+            Vencimento em 3 dias úteis. Compensação em até 3 dias após o pagamento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="oc-submit-wrap">
+    <button type="submit" class="oc-btn-submit" data-cart-total
+      aria-label="Confirmar e finalizar a compra">
+      🔒 Finalizar compra — {{ .Cart.Total.Display }}
+    </button>
+    <p class="oc-submit-notice" aria-live="polite">
+      <span aria-hidden="true">🛡️</span>
+      Seus dados são criptografados com SSL
+    </p>
+  </div>
+</form>
+{{ end }}

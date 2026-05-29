@@ -1,0 +1,19 @@
+name: dev-one-click
+version: "0.1.0"
+inherits: default
+flow_profile: one-click
+
+features:
+  pix_qrcode: true
+  address_autocomplete: true
+  upsell_step: false
+
+cache:
+  ttl_seconds: 0
+
+assets:
+  css:
+    - theme.css
+  js:
+    - theme.js
+  fingerprint: false

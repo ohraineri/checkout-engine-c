@@ -1,0 +1,9 @@
+{{ define "fields/number" }}
+<div class="field-group"
+     data-field="number"
+     data-validate="required">
+  <input id="number" type="text" autocomplete="address-line2" />
+  <label for="number">{{ t . "field.number.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

@@ -1,0 +1,9 @@
+{{ define "component/trust-badges" }}
+<div class="trust-badges" aria-label="Selos de segurança">
+  <span>🔒 {{ t . "trust.secure" }}</span>
+  <span aria-hidden="true">·</span>
+  <span>🛡️ {{ t . "trust.encrypted" }}</span>
+  <span aria-hidden="true">·</span>
+  <span>✅ {{ t . "trust.guaranteed" }}</span>
+</div>
+{{ end }}

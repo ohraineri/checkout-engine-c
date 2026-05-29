@@ -1,0 +1,48 @@
+{{ define "order_summary" }}
+<div class="oc-summary" itemscope itemtype="https://schema.org/Order">
+  <div class="oc-summary-head">
+    <h3 class="oc-summary-title">Resumo do pedido</h3>
+  </div>
+  <div class="oc-summary-body">
+    <ul class="oc-item-list" aria-label="Itens do pedido">
+      {{ range .Cart.Items }}
+      <li class="oc-item" itemprop="orderedItem" itemscope itemtype="https://schema.org/OrderItem">
+        <img class="oc-item-img" src="{{ .ImageURL }}" alt="{{ .Name }}" itemprop="image">
+        <div class="oc-item-info">
+          <span class="oc-item-name" itemprop="name">{{ .Name }}</span>
+          <span class="oc-item-qty">Qtd: {{ .Quantity }}</span>
+        </div>
+        <span class="oc-item-price" itemprop="orderQuantity">{{ .Total.Display }}</span>
+      </li>
+      {{ end }}
+    </ul>
+
+    <div class="oc-coupon">
+      <input class="oc-coupon-input" type="text" placeholder="Cupom de desconto"
+        aria-label="Código do cupom de desconto" autocomplete="off">
+      <button class="oc-coupon-btn" type="button" aria-label="Aplicar cupom">Aplicar</button>
+    </div>
+
+    <div class="oc-lines" aria-label="Totais do pedido">
+      <div class="oc-line">
+        <span>Subtotal</span>
+        <span>{{ .Cart.Subtotal.Display }}</span>
+      </div>
+      <div class="oc-line">
+        <span>Frete</span>
+        <span>{{ .Cart.Shipping.Display }}</span>
+      </div>
+      {{ if .Cart.CouponApplied }}
+      <div class="oc-line oc-line--discount">
+        <span>Desconto ({{ .Cart.CouponApplied }})</span>
+        <span>− {{ .Cart.Discount.Display }}</span>
+      </div>
+      {{ end }}
+      <div class="oc-line oc-line--total" itemprop="price">
+        <span>Total</span>
+        <span>{{ .Cart.Total.Display }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

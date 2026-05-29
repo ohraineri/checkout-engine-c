@@ -1,0 +1,28 @@
+{{ define "component/payment-tabs" }}
+<div class="payment-tabs" role="tablist">
+  <button class="payment-tab" role="tab" data-tab="pix" aria-selected="false">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    {{ t . "payment.tab.pix" }}
+  </button>
+  <button class="payment-tab" role="tab" data-tab="card" aria-selected="true">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+      <path d="M2 10h20" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    {{ t . "payment.tab.card" }}
+  </button>
+</div>
+<div class="payment-panel" data-panel="pix" hidden>
+  {{ template "component/pix-panel" . }}
+</div>
+<div class="payment-panel" data-panel="card">
+  {{ template "fields/card-number" . }}
+  {{ template "fields/card-name" . }}
+  {{ template "fields/card-expiry" . }}
+  {{ template "fields/card-cvv" . }}
+  {{ template "fields/card-installments" . }}
+</div>
+{{ end }}

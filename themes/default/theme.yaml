@@ -1,0 +1,8 @@
+name: default
+version: "1.0.0"
+inherits: _base
+locale: en
+currency: USD
+features:
+  trust_badges: true
+  order_summary: true

@@ -1,0 +1,7 @@
+{{ define "component/pix-panel" }}
+<div class="pix-panel" data-payment-panel="pix">
+  <div class="pix-qrcode" data-pix-qrcode aria-label="QR Code PIX"></div>
+  <p class="pix-instruction">{{ t . "payment.pix.instruction" }}</p>
+  <p class="pix-expiry">{{ t . "payment.pix.expiry" }} <strong data-pix-timer>10:00</strong></p>
+</div>
+{{ end }}

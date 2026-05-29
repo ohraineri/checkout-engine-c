@@ -1,0 +1,28 @@
+{{ define "content" }}
+<style>
+:root {
+  --primary-color:   {{ .Store.Tokens.PrimaryColor }};
+  --secondary-color: {{ .Store.Tokens.SecondaryColor }};
+  --font-family:     {{ .Store.Tokens.FontFamily }};
+  --border-radius:   {{ .Store.Tokens.BorderRadius }};
+}
+</style>
+<div class="oc-page" itemscope itemtype="https://schema.org/CheckoutPage">
+  <header class="oc-topbar" role="banner">
+    <a class="oc-logo" href="/" itemprop="url" aria-label="{{ .Store.Name }} — página inicial">{{ .Store.Name }}</a>
+    <div class="oc-secure-badge" aria-label="Ambiente seguro">
+      <svg width="13" height="15" viewBox="0 0 13 15" fill="none" aria-hidden="true">
+        <path d="M6.5 0L0 3v4c0 3.87 2.76 7.5 6.5 8C10.24 14.5 13 10.87 13 7V3L6.5 0Z" fill="currentColor"/>
+      </svg>
+      Compra 100% segura
+    </div>
+  </header>
+  <div class="oc-layout">
+    {{ block "step_content" . }}{{ end }}
+    <aside class="oc-side-col" aria-label="Resumo do pedido">
+      {{ template "order_summary" . }}
+      {{ template "trust_badges" . }}
+    </aside>
+  </div>
+</div>
+{{ end }}

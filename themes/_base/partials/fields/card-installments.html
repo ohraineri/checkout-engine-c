@@ -1,0 +1,11 @@
+{{ define "fields/card-installments" }}
+<div class="field-group" data-field="card-installments">
+  <select id="card-installments" autocomplete="off">
+    {{ range .Cart.Installments }}
+    <option value="{{ .Number }}">{{ .Label }}</option>
+    {{ end }}
+  </select>
+  <label for="card-installments">{{ t . "field.card-installments.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

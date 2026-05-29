@@ -1,0 +1,161 @@
+:root {
+  --checkout-primary: #635bff;
+  --checkout-error: #df1b41;
+  --checkout-focus-ring: rgba(99, 91, 255, 0.15);
+  --checkout-border: #e0e0e0;
+  --checkout-border-focus: var(--checkout-primary);
+  --checkout-text: #1a1f36;
+  --checkout-text-muted: #6b7280;
+  --checkout-bg: #f6f9fc;
+  --checkout-surface: #ffffff;
+  --checkout-radius: 6px;
+  --checkout-transition: 0.15s ease;
+}
+
+[data-field] {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-field] input,
+[data-field] select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+[data-field] label {
+  position: absolute;
+  pointer-events: none;
+  transition: transform var(--checkout-transition), font-size var(--checkout-transition);
+}
+
+[data-field].filled label,
+[data-field]:focus-within label {
+  transform: translateY(-100%) scale(0.85);
+  transform-origin: left top;
+}
+
+[data-field].field-group--error input,
+[data-field].field-group--error select {
+  border-color: var(--checkout-error);
+}
+
+.field-error {
+  display: none;
+  color: var(--checkout-error);
+  font-size: 0.75rem;
+}
+
+[data-field].field-group--error .field-error {
+  display: block;
+  animation: slideDown var(--checkout-transition);
+}
+
+[data-field].field-group--loading input {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.skeleton {
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.12) 20%,
+    rgba(0, 0, 0, 0.06) 40%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  background-size: 400% 100%;
+  border-radius: 4px;
+  display: inline-block;
+  min-width: 4em;
+  animation: shimmer 1.5s ease infinite;
+}
+
+.card-brands {
+  position: absolute;
+  right: 0;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.card-brand {
+  opacity: 0.25;
+  transition: opacity var(--checkout-transition);
+  width: 38px;
+}
+
+[data-field="card-number"][data-brand] .card-brand {
+  opacity: 0.15;
+}
+
+[data-field="card-number"][data-brand="visa"] [data-brand-name="visa"],
+[data-field="card-number"][data-brand="mastercard"] [data-brand-name="mastercard"],
+[data-field="card-number"][data-brand="amex"] [data-brand-name="amex"],
+[data-field="card-number"][data-brand="elo"] [data-brand-name="elo"],
+[data-field="card-number"][data-brand="hipercard"] [data-brand-name="hipercard"] {
+  opacity: 1;
+}
+
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary .btn-spinner {
+  display: none;
+}
+
+.btn-primary.loading .btn-text {
+  visibility: hidden;
+}
+
+.btn-primary.loading .btn-spinner {
+  display: flex;
+  position: absolute;
+  animation: spin 0.75s linear infinite;
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[data-panel][hidden] {
+  display: none;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

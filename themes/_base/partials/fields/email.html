@@ -1,0 +1,9 @@
+{{ define "fields/email" }}
+<div class="field-group"
+     data-field="email"
+     data-validate="email">
+  <input id="email" type="email" autocomplete="email" />
+  <label for="email">{{ t . "field.email.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

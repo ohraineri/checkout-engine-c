@@ -1,0 +1,10 @@
+{{ define "fields/card-cvv" }}
+<div class="field-group"
+     data-field="card-cvv"
+     data-mask="cvv"
+     data-validate="cvv">
+  <input id="card-cvv" type="text" autocomplete="cc-csc" maxlength="4" />
+  <label for="card-cvv">{{ t . "field.card-cvv.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

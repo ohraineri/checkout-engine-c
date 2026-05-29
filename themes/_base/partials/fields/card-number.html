@@ -1,0 +1,50 @@
+{{ define "fields/card-number" }}
+<div class="field-group field-group--card"
+     data-field="card-number"
+     data-mask="card"
+     data-validate="card-number">
+  <input id="card-number" type="text" inputmode="numeric"
+         autocomplete="cc-number" maxlength="19" />
+  <label for="card-number">{{ t . "field.card-number.label" }}</label>
+  <div class="card-brands" aria-hidden="true">
+    <span class="card-brand" data-brand-name="visa">
+      <svg viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="48" height="16" rx="2" fill="#fff"/>
+        <text x="24" y="12" font-family="Arial,sans-serif" font-size="11" font-weight="bold"
+              fill="#1a1f71" text-anchor="middle" letter-spacing="2">VISA</text>
+      </svg>
+    </span>
+    <span class="card-brand" data-brand-name="mastercard">
+      <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="14" cy="12" r="12" fill="#eb001b"/>
+        <circle cx="24" cy="12" r="12" fill="#f79e1b"/>
+        <path d="M19 4.5a12 12 0 0 1 0 15A12 12 0 0 1 19 4.5z" fill="#ff5f00"/>
+      </svg>
+    </span>
+    <span class="card-brand" data-brand-name="amex">
+      <svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="48" height="32" rx="4" fill="#2557d6"/>
+        <text x="24" y="20" font-family="Arial,sans-serif" font-size="10" font-weight="bold"
+              fill="#fff" text-anchor="middle" letter-spacing="1">AMEX</text>
+      </svg>
+    </span>
+    <span class="card-brand" data-brand-name="elo">
+      <svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="48" height="32" rx="4" fill="#000"/>
+        <text x="11" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="bold"
+              fill="#ffcb00" text-anchor="middle">e</text>
+        <text x="30" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="bold"
+              fill="#fff" text-anchor="middle">lo</text>
+      </svg>
+    </span>
+    <span class="card-brand" data-brand-name="hipercard">
+      <svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="48" height="32" rx="4" fill="#b3131b"/>
+        <text x="24" y="20" font-family="Arial,sans-serif" font-size="7" font-weight="bold"
+              fill="#fff" text-anchor="middle" letter-spacing="0.5">hipercard</text>
+      </svg>
+    </span>
+  </div>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

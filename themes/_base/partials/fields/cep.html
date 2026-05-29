@@ -1,0 +1,11 @@
+{{ define "fields/cep" }}
+<div class="field-group"
+     data-field="cep"
+     data-mask="zipcode"
+     data-validate="zipcode"
+     data-fills='{"street":"#street","neighborhood":"#neighborhood","city":"#city","state":"#state"}'>
+  <input id="cep" type="text" autocomplete="postal-code" />
+  <label for="cep">{{ t . "field.cep.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

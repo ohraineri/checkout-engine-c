@@ -1,0 +1,5 @@
+{{ define "scripts" }}
+<script id="checkout-i18n" type="application/json">{{ .I18n.MessagesJSON }}</script>
+<script src="{{ .Assets.URL "core.js" }}"></script>
+<script src="{{ .Assets.URL "theme.js" }}"></script>
+{{ end }}

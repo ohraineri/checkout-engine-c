@@ -1,0 +1,13 @@
+name: black-friday
+version: "1.0.0"
+inherits: default
+locale: en
+currency: USD
+features:
+  trust_badges: true
+  order_summary: true
+  countdown_timer: true
+  urgency_banner: true
+overrides:
+  steps:
+    - payment

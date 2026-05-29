@@ -1,0 +1,55 @@
+field.email.label: Email
+field.cep.label: ZIP Code
+field.street.label: Street
+field.number.label: Number
+field.complement.label: Complement
+field.neighborhood.label: Neighborhood
+field.city.label: City
+field.state.label: State
+field.card-number.label: Card Number
+field.card-name.label: Name on Card
+field.card-expiry.label: Expiry Date
+field.card-cvv.label: CVV
+field.card-installments.label: Installments
+
+validation.required: This field is required
+validation.email: Invalid email address
+validation.zipcode: Invalid ZIP code
+validation.card-number: Invalid card number
+validation.expiry: Invalid expiry date
+validation.cvv: Invalid CVV
+validation.cep-not-found: ZIP code not found
+
+section.contact: Contact Information
+section.address: Shipping Address
+section.shipping: Shipping Options
+section.payment: Payment
+
+shipping.standard.name: Standard Delivery
+shipping.standard.eta: 5 to 8 business days
+shipping.express.name: Express Delivery
+shipping.express.eta: 1 to 2 business days
+
+payment.tab.pix: PIX
+payment.tab.card: Card
+payment.pix.instruction: Open your bank app and scan the QR Code
+payment.pix.expiry: Code expires in
+
+installment.single: "One-time payment — {value}"
+installment.multiple: "{n}x of {value} interest-free"
+
+order.subtotal: Subtotal
+order.shipping: Shipping
+order.discount: Discount
+order.total: Total
+order.coupon.placeholder: Discount code
+order.coupon.apply: Apply
+
+action.submit: Place Order
+action.processing: Processing...
+
+trust.secure: Secure Payment
+trust.encrypted: Encrypted Data
+trust.guaranteed: Purchase Guaranteed
+
+shipping.free: Free

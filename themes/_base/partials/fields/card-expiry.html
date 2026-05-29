@@ -1,0 +1,10 @@
+{{ define "fields/card-expiry" }}
+<div class="field-group"
+     data-field="card-expiry"
+     data-mask="expiry"
+     data-validate="expiry">
+  <input id="card-expiry" type="text" autocomplete="cc-exp" maxlength="5" />
+  <label for="card-expiry">{{ t . "field.card-expiry.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

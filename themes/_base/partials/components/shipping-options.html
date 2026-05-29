@@ -1,0 +1,25 @@
+{{ define "component/shipping-options" }}
+{{ if .Store.ShippingOptions }}
+{{ range .Store.ShippingOptions }}
+<label class="shipping-option" data-shipping-id="{{ .ID }}">
+  <input type="radio" name="shipping" value="{{ .ID }}" />
+  <span class="shipping-option__name">{{ .Name }}</span>
+  <span class="shipping-option__eta">{{ .ETA }}</span>
+  <span class="shipping-option__price">{{ .Price.Display }}</span>
+</label>
+{{ end }}
+{{ else }}
+<label class="shipping-option" data-shipping-id="standard">
+  <input type="radio" name="shipping" value="standard" checked />
+  <span class="shipping-option__name">{{ t . "shipping.standard.name" }}</span>
+  <span class="shipping-option__eta">{{ t . "shipping.standard.eta" }}</span>
+  <span class="shipping-option__price">{{ t . "shipping.free" }}</span>
+</label>
+<label class="shipping-option" data-shipping-id="express">
+  <input type="radio" name="shipping" value="express" />
+  <span class="shipping-option__name">{{ t . "shipping.express.name" }}</span>
+  <span class="shipping-option__eta">{{ t . "shipping.express.eta" }}</span>
+  <span class="shipping-option__price">R$&nbsp;29,90</span>
+</label>
+{{ end }}
+{{ end }}

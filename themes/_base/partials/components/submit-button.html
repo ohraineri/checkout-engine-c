@@ -1,0 +1,11 @@
+{{ define "component/submit-button" }}
+<button id="btn-submit" type="button" class="btn-primary" data-action="submit">
+  <span class="btn-text">{{ t . "action.submit" }}</span>
+  <span class="btn-spinner" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+      <path d="M12 2a10 10 0 0 1 10 10" />
+    </svg>
+  </span>
+</button>
+{{ end }}

@@ -1,0 +1,285 @@
+{{ define "checkout-step" }}
+<div class="co-progress" role="list" aria-label="Etapas do checkout">
+  <div class="co-progress-step co-progress-step--active" role="listitem" data-indicator="1">
+    <span class="co-progress-num" aria-hidden="true">1</span>
+    <span class="co-progress-label">Endereço</span>
+  </div>
+  <span class="co-progress-line" aria-hidden="true"></span>
+  <div class="co-progress-step" role="listitem" data-indicator="2">
+    <span class="co-progress-num" aria-hidden="true">2</span>
+    <span class="co-progress-label">Entrega</span>
+  </div>
+  <span class="co-progress-line" aria-hidden="true"></span>
+  <div class="co-progress-step" role="listitem" data-indicator="3">
+    <span class="co-progress-num" aria-hidden="true">3</span>
+    <span class="co-progress-label">Pagamento</span>
+  </div>
+</div>
+
+<form method="POST" action="/{{ .Store.Slug }}/checkout/confirm"
+  novalidate aria-label="Formulário de checkout"
+  itemscope itemtype="https://schema.org/Order">
+
+  <div class="co-step co-step--active" data-step="1" aria-labelledby="addr-title">
+    <div class="co-step-head">
+      <div class="co-step-title-row">
+        <span class="co-step-num" aria-hidden="true">1</span>
+        <h2 id="addr-title" class="co-step-title">Endereço de entrega</h2>
+      </div>
+      <div class="co-step-summary" aria-live="polite"></div>
+      <button type="button" class="co-btn-edit" data-goto="1" aria-label="Editar endereço" hidden>Editar</button>
+    </div>
+    <div class="co-step-body" itemprop="customer" itemscope itemtype="https://schema.org/Person">
+      <div class="co-row">
+        <div class="co-field">
+          <label class="co-label" for="name">Nome completo</label>
+          <input class="co-input" type="text" id="name" name="name"
+            value="{{ .Session.CustomerName }}"
+            placeholder="Seu nome completo"
+            autocomplete="name"
+            itemprop="name"
+            required>
+        </div>
+        <div class="co-field co-field--md">
+          <label class="co-label" for="email">E-mail</label>
+          <input class="co-input" type="email" id="email" name="email"
+            value="{{ .Session.Email }}"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            itemprop="email"
+            required>
+        </div>
+      </div>
+      <div class="co-row">
+        <div class="co-field co-field--sm">
+          <label class="co-label" for="cep">CEP</label>
+          <input class="co-input" type="text" id="cep" name="cep"
+            placeholder="00000-000"
+            autocomplete="postal-code"
+            inputmode="numeric"
+            maxlength="9" required>
+        </div>
+        <div class="co-field co-field--md">
+          <label class="co-label" for="phone">Telefone</label>
+          <input class="co-input" type="tel" id="phone" name="phone"
+            placeholder="(11) 99999-9999"
+            autocomplete="tel"
+            inputmode="numeric"
+            itemprop="telephone"
+            maxlength="15">
+        </div>
+      </div>
+      <div class="co-row">
+        <div class="co-field">
+          <label class="co-label" for="street">Rua</label>
+          <input class="co-input" type="text" id="street" name="street"
+            placeholder="Nome da rua"
+            autocomplete="address-line1"
+            required>
+        </div>
+        <div class="co-field co-field--sm">
+          <label class="co-label" for="number">Número</label>
+          <input class="co-input" type="text" id="number" name="number"
+            placeholder="000"
+            autocomplete="off"
+            required>
+        </div>
+      </div>
+      <div class="co-row">
+        <div class="co-field">
+          <label class="co-label" for="complement">Complemento</label>
+          <input class="co-input" type="text" id="complement" name="complement"
+            placeholder="Apto, bloco, casa..."
+            autocomplete="address-line2">
+        </div>
+        <div class="co-field">
+          <label class="co-label" for="neighborhood">Bairro</label>
+          <input class="co-input" type="text" id="neighborhood" name="neighborhood"
+            placeholder="Bairro"
+            autocomplete="off"
+            required>
+        </div>
+      </div>
+      <div class="co-row">
+        <div class="co-field">
+          <label class="co-label" for="city">Cidade</label>
+          <input class="co-input" type="text" id="city" name="city"
+            placeholder="Cidade"
+            autocomplete="address-level2"
+            required>
+        </div>
+        <div class="co-field co-field--sm">
+          <label class="co-label" for="state">Estado</label>
+          <input class="co-input" type="text" id="state" name="state"
+            placeholder="UF"
+            autocomplete="address-level1"
+            maxlength="2" required>
+        </div>
+      </div>
+      <div class="co-step-nav co-step-nav--end">
+        <button type="button" class="co-btn-next" data-goto="2">
+          Continuar para entrega
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="co-step co-step--locked" data-step="2" aria-labelledby="ship-title">
+    <div class="co-step-head">
+      <div class="co-step-title-row">
+        <span class="co-step-num" aria-hidden="true">2</span>
+        <h2 id="ship-title" class="co-step-title">Método de entrega</h2>
+      </div>
+      <div class="co-step-summary" aria-live="polite"></div>
+      <button type="button" class="co-btn-edit" data-goto="2" aria-label="Editar entrega" hidden>Editar</button>
+    </div>
+    <div class="co-step-body">
+      <div class="co-shipping-list" role="radiogroup" aria-label="Opções de entrega">
+        <label class="co-shipping-opt">
+          <input type="radio" name="shipping_method" value="standard" checked>
+          <div class="co-shipping-info">
+            <span class="co-shipping-name">Entrega padrão</span>
+            <span class="co-shipping-eta">5 a 8 dias úteis</span>
+          </div>
+          <span class="co-shipping-price">{{ .Cart.Shipping.Display }}</span>
+        </label>
+        <label class="co-shipping-opt">
+          <input type="radio" name="shipping_method" value="express">
+          <div class="co-shipping-info">
+            <span class="co-shipping-name">Entrega expressa</span>
+            <span class="co-shipping-eta">1 a 2 dias úteis</span>
+          </div>
+          <span class="co-shipping-price">R$&nbsp;29,90</span>
+        </label>
+      </div>
+      <div class="co-step-nav">
+        <button type="button" class="co-btn-back" data-goto="1">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Voltar
+        </button>
+        <button type="button" class="co-btn-next" data-goto="3">
+          Continuar para pagamento
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="co-step co-step--locked" data-step="3" aria-labelledby="pay-title">
+    <div class="co-step-head">
+      <div class="co-step-title-row">
+        <span class="co-step-num" aria-hidden="true">3</span>
+        <h2 id="pay-title" class="co-step-title">Pagamento</h2>
+      </div>
+      <div class="co-step-summary" aria-live="polite"></div>
+    </div>
+    <div class="co-step-body">
+      <div class="co-pay-tabs" role="tablist" aria-label="Formas de pagamento">
+        <button type="button" class="co-pay-tab co-pay-tab--active"
+          role="tab" aria-selected="true" aria-controls="co-panel-pix" data-tab="pix">
+          ⚡ PIX
+        </button>
+        <button type="button" class="co-pay-tab"
+          role="tab" aria-selected="false" aria-controls="co-panel-card" data-tab="card">
+          💳 Cartão
+        </button>
+        <button type="button" class="co-pay-tab"
+          role="tab" aria-selected="false" aria-controls="co-panel-boleto" data-tab="boleto">
+          📄 Boleto
+        </button>
+      </div>
+
+      <div class="co-tab-panel" id="co-panel-pix" role="tabpanel">
+        <div class="co-pix-wrap">
+          <div class="co-pix-qr" aria-label="QR Code gerado após confirmação">QR Code</div>
+          <p class="co-pix-desc">Escaneie com o app do seu banco</p>
+          <div class="co-pix-amount">{{ .Cart.Total.Display }}</div>
+          <p class="co-pix-sub">Aprovação em até 2 minutos</p>
+          <button type="button" class="co-pix-copy">Copiar código PIX</button>
+        </div>
+      </div>
+
+      <div class="co-tab-panel co-tab-panel--hidden" id="co-panel-card" role="tabpanel">
+        <div class="co-brands" aria-label="Bandeiras aceitas">
+          <span class="co-brand">Visa</span>
+          <span class="co-brand">Master</span>
+          <span class="co-brand">Amex</span>
+          <span class="co-brand">Elo</span>
+          <span class="co-brand">Hiper</span>
+        </div>
+        <div class="co-row">
+          <div class="co-field">
+            <label class="co-label" for="card_number">Número do cartão</label>
+            <input class="co-input" type="text" id="card_number" name="card_number"
+              placeholder="0000 0000 0000 0000"
+              autocomplete="cc-number"
+              inputmode="numeric"
+              maxlength="19">
+          </div>
+        </div>
+        <div class="co-row">
+          <div class="co-field">
+            <label class="co-label" for="card_name">Nome no cartão</label>
+            <input class="co-input" type="text" id="card_name" name="card_name"
+              placeholder="NOME COMO ESTÁ NO CARTÃO"
+              autocomplete="cc-name">
+          </div>
+        </div>
+        <div class="co-row">
+          <div class="co-field co-field--sm">
+            <label class="co-label" for="card_expiry">Validade</label>
+            <input class="co-input" type="text" id="card_expiry" name="card_expiry"
+              placeholder="MM/AA"
+              autocomplete="cc-exp"
+              inputmode="numeric"
+              maxlength="5">
+          </div>
+          <div class="co-field co-field--sm">
+            <label class="co-label" for="card_cvv">CVV</label>
+            <input class="co-input" type="text" id="card_cvv" name="card_cvv"
+              placeholder="000"
+              autocomplete="cc-csc"
+              inputmode="numeric"
+              maxlength="4">
+          </div>
+        </div>
+        <div class="co-row">
+          <div class="co-field">
+            <label class="co-label" for="installments">Parcelamento</label>
+            <select class="co-select" id="installments" name="installments">
+              <option value="1">1x de {{ .Cart.Total.Display }} sem juros</option>
+              <option value="2">2x sem juros</option>
+              <option value="3">3x sem juros</option>
+              <option value="6">6x sem juros</option>
+              <option value="12">12x sem juros</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-tab-panel co-tab-panel--hidden" id="co-panel-boleto" role="tabpanel">
+        <div class="co-boleto-wrap">
+          <span class="co-boleto-icon" aria-hidden="true">📄</span>
+          <p class="co-boleto-title">Boleto bancário</p>
+          <p class="co-boleto-desc">
+            O boleto será gerado após a confirmação.<br>
+            Vencimento em 3 dias úteis. Compensação em até 3 dias após o pagamento.
+          </p>
+        </div>
+      </div>
+
+      <div class="co-step-nav">
+        <button type="button" class="co-btn-back" data-goto="2">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Voltar
+        </button>
+        <button type="submit" class="co-btn-submit" data-cart-total
+          aria-label="Confirmar e finalizar a compra">
+          🔒 Finalizar compra — {{ .Cart.Total.Display }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+{{ end }}

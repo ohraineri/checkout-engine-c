@@ -1,0 +1,55 @@
+field.email.label: Correo electrónico
+field.cep.label: Código postal
+field.street.label: Calle
+field.number.label: Número
+field.complement.label: Complemento
+field.neighborhood.label: Barrio
+field.city.label: Ciudad
+field.state.label: Provincia
+field.card-number.label: Número de tarjeta
+field.card-name.label: Nombre en la tarjeta
+field.card-expiry.label: Vencimiento
+field.card-cvv.label: CVV
+field.card-installments.label: Cuotas
+
+validation.required: Este campo es obligatorio
+validation.email: Correo electrónico inválido
+validation.zipcode: Código postal inválido
+validation.card-number: Número de tarjeta inválido
+validation.expiry: Fecha de vencimiento inválida
+validation.cvv: CVV inválido
+validation.cep-not-found: Código postal no encontrado
+
+section.contact: Datos de contacto
+section.address: Dirección de entrega
+section.shipping: Opciones de envío
+section.payment: Pago
+
+shipping.standard.name: Envío estándar
+shipping.standard.eta: 5 a 8 días hábiles
+shipping.express.name: Envío express
+shipping.express.eta: 1 a 2 días hábiles
+
+payment.tab.pix: PIX
+payment.tab.card: Tarjeta
+payment.pix.instruction: "Abrí tu app bancaria y escaneá el código QR"
+payment.pix.expiry: El código vence en
+
+installment.single: "Pago único — {value}"
+installment.multiple: "{n} cuotas de {value} sin interés"
+
+order.subtotal: Subtotal
+order.shipping: Envío
+order.discount: Descuento
+order.total: Total
+order.coupon.placeholder: Código de descuento
+order.coupon.apply: Aplicar
+
+action.submit: Finalizar compra
+action.processing: Procesando...
+
+trust.secure: Pago seguro
+trust.encrypted: Datos encriptados
+trust.guaranteed: Compra garantizada
+
+shipping.free: Gratis

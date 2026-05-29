@@ -1,0 +1,55 @@
+field.email.label: E-mail
+field.cep.label: CEP
+field.street.label: Rua
+field.number.label: Número
+field.complement.label: Complemento
+field.neighborhood.label: Bairro
+field.city.label: Cidade
+field.state.label: Estado
+field.card-number.label: Número do cartão
+field.card-name.label: Nome no cartão
+field.card-expiry.label: Validade
+field.card-cvv.label: CVV
+field.card-installments.label: Parcelas
+
+validation.required: Campo obrigatório
+validation.email: E-mail inválido
+validation.zipcode: CEP inválido
+validation.card-number: Número inválido
+validation.expiry: Data inválida
+validation.cvv: CVV inválido
+validation.cep-not-found: CEP não encontrado
+
+section.contact: Dados de contato
+section.address: Endereço de entrega
+section.shipping: Opções de envio
+section.payment: Pagamento
+
+shipping.standard.name: Entrega padrão
+shipping.standard.eta: 5 a 8 dias úteis
+shipping.express.name: Entrega expressa
+shipping.express.eta: 1 a 2 dias úteis
+
+payment.tab.pix: PIX
+payment.tab.card: Cartão
+payment.pix.instruction: Abra o app do seu banco e escaneie o QR Code
+payment.pix.expiry: O código expira em
+
+installment.single: "À vista — {value}"
+installment.multiple: "{n}x de {value} sem juros"
+
+order.subtotal: Subtotal
+order.shipping: Frete
+order.discount: Desconto
+order.total: Total
+order.coupon.placeholder: Código de desconto
+order.coupon.apply: Aplicar
+
+action.submit: Finalizar compra
+action.processing: Processando...
+
+trust.secure: Pagamento seguro
+trust.encrypted: Dados criptografados
+trust.guaranteed: Compra garantida
+
+shipping.free: Grátis

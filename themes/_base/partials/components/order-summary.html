@@ -1,0 +1,40 @@
+{{ define "component/order-summary" }}
+<aside class="order-summary">
+  <ul class="order-items">
+    {{ range .Cart.Items }}
+    <li class="order-item">
+      <div class="order-item__image">
+        <img src="{{ .ImageURL }}" alt="{{ .Name }}" width="48" height="48" loading="lazy" />
+        <span class="order-item__qty">{{ .Quantity }}</span>
+      </div>
+      <span class="order-item__name">{{ .Name }}</span>
+      <span class="order-item__total">{{ .Total.Display }}</span>
+    </li>
+    {{ end }}
+  </ul>
+  <dl class="order-totals">
+    <div class="order-totals__row">
+      <dt>{{ t . "order.subtotal" }}</dt>
+      <dd data-cart="subtotal" class="skeleton">{{ .Cart.Subtotal.Display }}</dd>
+    </div>
+    <div class="order-totals__row">
+      <dt>{{ t . "order.shipping" }}</dt>
+      <dd data-cart="shipping" class="skeleton">{{ .Cart.Shipping.Display }}</dd>
+    </div>
+    {{ if .Cart.CouponApplied }}
+    <div class="order-totals__row order-totals__row--discount">
+      <dt>{{ t . "order.discount" }}</dt>
+      <dd data-cart="discount">− {{ .Cart.Discount.Display }}</dd>
+    </div>
+    {{ end }}
+    <div class="order-totals__row order-totals__row--total">
+      <dt>{{ t . "order.total" }}</dt>
+      <dd data-cart="total" class="skeleton">{{ .Cart.Total.Display }}</dd>
+    </div>
+  </dl>
+  <div class="coupon-field">
+    <input id="coupon" type="text" placeholder="{{ t . "order.coupon.placeholder" }}" />
+    <button type="button" data-action="apply-coupon">{{ t . "order.coupon.apply" }}</button>
+  </div>
+</aside>
+{{ end }}

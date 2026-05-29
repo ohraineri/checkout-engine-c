@@ -1,0 +1,46 @@
+{{ define "order-summary" }}
+<div class="co-summary" itemscope itemtype="https://schema.org/Order">
+  <div class="co-summary-head">
+    <h3 class="co-summary-title">Resumo do pedido</h3>
+  </div>
+  <div class="co-summary-body">
+    <ul class="co-item-list" aria-label="Itens do pedido">
+      {{ range .Cart.Items }}
+      <li class="co-item" itemprop="orderedItem" itemscope itemtype="https://schema.org/OrderItem">
+        <img class="co-item-img" src="{{ .ImageURL }}" alt="{{ .Name }}" itemprop="image">
+        <div class="co-item-info">
+          <span class="co-item-name" itemprop="name">{{ .Name }}</span>
+          <span class="co-item-qty">Qtd: {{ .Quantity }}</span>
+        </div>
+        <span class="co-item-price">{{ .Total.Display }}</span>
+      </li>
+      {{ end }}
+    </ul>
+    <div class="co-coupon">
+      <input class="co-coupon-input" type="text" placeholder="Cupom de desconto"
+        aria-label="Código do cupom" autocomplete="off">
+      <button class="co-coupon-btn" type="button">Aplicar</button>
+    </div>
+    <div class="co-lines" aria-label="Totais">
+      <div class="co-line">
+        <span>Subtotal</span>
+        <span>{{ .Cart.Subtotal.Display }}</span>
+      </div>
+      <div class="co-line">
+        <span>Frete</span>
+        <span>{{ .Cart.Shipping.Display }}</span>
+      </div>
+      {{ if .Cart.CouponApplied }}
+      <div class="co-line co-line--discount">
+        <span>Desconto ({{ .Cart.CouponApplied }})</span>
+        <span>− {{ .Cart.Discount.Display }}</span>
+      </div>
+      {{ end }}
+      <div class="co-line co-line--total" itemprop="price">
+        <span>Total</span>
+        <span>{{ .Cart.Total.Display }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

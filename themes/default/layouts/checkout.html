@@ -1,0 +1,30 @@
+{{ define "content" }}
+<style>
+:root {
+  --primary-color:   {{ .Store.Tokens.PrimaryColor }};
+  --secondary-color: {{ .Store.Tokens.SecondaryColor }};
+  --font-family:     {{ .Store.Tokens.FontFamily }};
+  --border-radius:   {{ .Store.Tokens.BorderRadius }};
+}
+</style>
+<div class="co-page" itemscope itemtype="https://schema.org/CheckoutPage">
+  <header class="co-topbar" role="banner">
+    <a class="co-logo" href="/" aria-label="{{ .Store.Name }} — início">{{ .Store.Name }}</a>
+    <div class="co-secure" aria-label="Ambiente seguro">
+      <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true">
+        <path d="M6 0L0 3v4c0 3.6 2.6 7 6 7.5C9.4 14 12 10.6 12 7V3L6 0Z" fill="currentColor"/>
+      </svg>
+      Compra segura
+    </div>
+  </header>
+  <div class="co-layout">
+    <main class="co-main" role="main">
+      {{ block "checkout-step" . }}{{ end }}
+    </main>
+    <aside class="co-aside" aria-label="Resumo do pedido">
+      {{ template "order-summary" . }}
+      {{ template "trust-badges" . }}
+    </aside>
+  </div>
+</div>
+{{ end }}

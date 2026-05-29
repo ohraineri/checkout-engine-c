@@ -1,0 +1,9 @@
+{{ define "fields/neighborhood" }}
+<div class="field-group"
+     data-field="neighborhood"
+     data-validate="required">
+  <input id="neighborhood" type="text" autocomplete="address-level3" />
+  <label for="neighborhood">{{ t . "field.neighborhood.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}

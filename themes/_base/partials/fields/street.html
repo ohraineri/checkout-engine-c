@@ -1,0 +1,9 @@
+{{ define "fields/street" }}
+<div class="field-group"
+     data-field="street"
+     data-validate="required">
+  <input id="street" type="text" autocomplete="address-line1" />
+  <label for="street">{{ t . "field.street.label" }}</label>
+  <span class="field-error" aria-live="polite"></span>
+</div>
+{{ end }}
